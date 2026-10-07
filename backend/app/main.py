@@ -1,10 +1,30 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.database import engine, Base
+from app.database import engine, Base, SessionLocal
+from app import models
 from app.api import topics, lessons, commands
 
 Base.metadata.create_all(bind=engine)
+
+
+def auto_seed():
+    """Наполняет БД начальными данными, если она пустая."""
+    db = SessionLocal()
+    try:
+        if db.query(models.Topic).count() == 0:
+            from seed import seed_data
+            seed_data(db)
+            print("✅ База наполнена начальными данными")
+        else:
+            print(f"ℹ️  В базе уже {db.query(models.Topic).count()} тем")
+    except Exception as e:
+        print(f"⚠️  Ошибка автосеялки: {e}")
+    finally:
+        db.close()
+
+
+auto_seed()
 
 app = FastAPI(
     title="DevOps Lab API",
