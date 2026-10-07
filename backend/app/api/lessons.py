@@ -1,14 +1,13 @@
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from typing import List
 
-from app.database import get_db
 from app import models, schemas
+from app.database import get_db
 
 router = APIRouter(prefix="/api/lessons", tags=["lessons"])
 
 
-@router.get("/", response_model=List[schemas.Lesson])
+@router.get("/", response_model=list[schemas.Lesson])
 def list_lessons(topic_id: int = None, db: Session = Depends(get_db)):
     query = db.query(models.Lesson)
     if topic_id is not None:

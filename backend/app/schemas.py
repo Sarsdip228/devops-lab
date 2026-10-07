@@ -1,5 +1,4 @@
 from pydantic import BaseModel
-from typing import List
 
 
 class LessonBase(BaseModel):
@@ -58,5 +57,5 @@ class Topic(TopicBase):
 
 
 class TopicDetail(Topic):
-    lessons: List[Lesson] = []
-    commands: List[Command] = []
+    lessons: list[Lesson] = []
+    commands: list[Command] = []

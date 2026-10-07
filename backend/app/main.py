@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.database import engine, Base, SessionLocal
 from app import models
-from app.api import topics, lessons, commands
+from app.api import commands, lessons, topics
+from app.database import Base, SessionLocal, engine
 
 Base.metadata.create_all(bind=engine)
 
@@ -14,6 +14,7 @@ def auto_seed():
     try:
         if db.query(models.Topic).count() == 0:
             from seed import seed_data
+
             seed_data(db)
             print("✅ База наполнена начальными данными")
         else:

@@ -3,3 +3,11 @@ uvicorn[standard]==0.30.1
 sqlalchemy==2.0.30
 pydantic==2.7.1
 psycopg2-binary==2.9.9
+
+# Линтер
+ruff==0.6.9
+
+# Тесты
+pytest==8.3.3
+httpx==0.27.2
+pytest-cov==6.0.0

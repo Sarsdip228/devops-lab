@@ -75,42 +75,97 @@ def seed_data(db):
         difficulty="beginner",
     )
 
-    db.add_all([
-        linux, docker, git, ci_cd,
-        python, postgres, nginx, monitoring,
-        cloud, kubernetes, security, bash,
-    ])
+    db.add_all(
+        [
+            linux,
+            docker,
+            git,
+            ci_cd,
+            python,
+            postgres,
+            nginx,
+            monitoring,
+            cloud,
+            kubernetes,
+            security,
+            bash,
+        ]
+    )
     db.commit()
 
-    db.add_all([
-        models.Lesson(topic_id=linux.id, title="Навигация по файловой системе",
-                      content="pwd, ls, cd. Абсолютный путь начинается с /. Относительный — от текущей. . — текущая, .. — родительская, ~ — домашняя.",
-                      order=1),
-        models.Lesson(topic_id=linux.id, title="Права доступа",
-                      content="chmod 755 file. chown user:group. 4=read, 2=write, 1=execute.",
-                      order=2),
-        models.Lesson(topic_id=docker.id, title="Контейнер и образ",
-                      content="Контейнер — изолированный процесс на ядре хоста. Образ — шаблон, контейнер — запущенный экземпляр.",
-                      order=1),
-        models.Lesson(topic_id=git.id, title="Основы Git",
-                      content="git init, add, commit, log, status.",
-                      order=1),
-        models.Lesson(topic_id=ci_cd.id, title="Что такое CI/CD",
-                      content="CI — автосборка и тесты при коммите. CD — автодоставка на прод.",
-                      order=1),
-    ])
+    db.add_all(
+        [
+            models.Lesson(
+                topic_id=linux.id,
+                title="Навигация по файловой системе",
+                content="pwd, ls, cd. Абсолютный путь начинается с /. Относительный — от текущей. . — текущая, .. — родительская, ~ — домашняя.",
+                order=1,
+            ),
+            models.Lesson(
+                topic_id=linux.id,
+                title="Права доступа",
+                content="chmod 755 file. chown user:group. 4=read, 2=write, 1=execute.",
+                order=2,
+            ),
+            models.Lesson(
+                topic_id=docker.id,
+                title="Контейнер и образ",
+                content="Контейнер — изолированный процесс на ядре хоста. Образ — шаблон, контейнер — запущенный экземпляр.",
+                order=1,
+            ),
+            models.Lesson(
+                topic_id=git.id,
+                title="Основы Git",
+                content="git init, add, commit, log, status.",
+                order=1,
+            ),
+            models.Lesson(
+                topic_id=ci_cd.id,
+                title="Что такое CI/CD",
+                content="CI — автосборка и тесты при коммите. CD — автодоставка на прод.",
+                order=1,
+            ),
+        ]
+    )
 
-    db.add_all([
-        models.Command(topic_id=linux.id, name="ls", syntax="ls -la",
-                       description="Список файлов.", example="ls -lah /var/log"),
-        models.Command(topic_id=linux.id, name="cd", syntax="cd [путь]",
-                       description="Сменить директорию.", example="cd /etc/nginx"),
-        models.Command(topic_id=docker.id, name="docker run", syntax="docker run [опции] образ",
-                       description="Запустить контейнер.", example="docker run -d -p 8080:80 nginx"),
-        models.Command(topic_id=git.id, name="git commit", syntax="git commit -m 'msg'",
-                       description="Зафиксировать изменения.", example="git commit -m 'init'"),
-        models.Command(topic_id=ci_cd.id, name="gh workflow run", syntax="gh workflow run ci.yml",
-                       description="Запустить workflow.", example="gh workflow run ci.yml"),
-    ])
+    db.add_all(
+        [
+            models.Command(
+                topic_id=linux.id,
+                name="ls",
+                syntax="ls -la",
+                description="Список файлов.",
+                example="ls -lah /var/log",
+            ),
+            models.Command(
+                topic_id=linux.id,
+                name="cd",
+                syntax="cd [путь]",
+                description="Сменить директорию.",
+                example="cd /etc/nginx",
+            ),
+            models.Command(
+                topic_id=docker.id,
+                name="docker run",
+                syntax="docker run [опции] образ",
+                description="Запустить контейнер.",
+                example="docker run -d -p 8080:80 nginx",
+            ),
+            models.Command(
+                topic_id=git.id,
+                name="git commit",
+                syntax="git commit -m 'msg'",
+                description="Зафиксировать изменения.",
+                example="git commit -m 'init'",
+            ),
+            models.Command(
+                topic_id=ci_cd.id,
+                name="gh workflow run",
+                syntax="gh workflow run ci.yml",
+                description="Запустить workflow.",
+                example="gh workflow run ci.yml",
+            ),
+        ]
+    )
 
     db.commit()

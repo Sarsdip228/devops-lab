@@ -1,0 +1,30 @@
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+exclude = [".venv", "__pycache__"]
+
+[tool.ruff.lint]
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+]
+ignore = [
+    "E501",  # line too long
+    "B008",  # FastAPI Depends в аргументах — это норма
+]
+
+[tool.ruff.lint.per-file-ignores]
+"seed.py" = ["E501"]
+[tool.pytest.ini_options]
+addopts = "-v --tb=short --cov=app --cov-report=term-missing"
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]
+[tool.coverage.run]
+source = ["app"]
+omit = ["app/__init__.py", "tests/*"]
