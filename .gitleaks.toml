@@ -1,0 +1,21 @@
+title = "Gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Global allowlist"
+paths = [
+  '''node_modules/''',
+  '''\.venv/''',
+  '''venv/''',
+  '''dist/''',
+  '''__pycache__/''',
+  '''\.pytest_cache/''',
+  '''\.git/''',
+  '''package-lock\.json''',
+  '''pnpm-lock\.yaml''',
+  '''yarn\.lock''',
+  '''\.min\.js$''',
+  '''\.map$''',
+]
