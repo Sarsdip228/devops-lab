@@ -15,7 +15,9 @@ export default function TopicDetail() {
 
   return (
     <>
-      <Link to="/topics" className="back">← Назад к темам</Link>
+      <Link to="/topics" className="back">
+        ← Назад к темам
+      </Link>
 
       {/* ТРИ ПРЯМОУГОЛЬНИКА ПО ЦЕНТРУ */}
       <div className="tabs-row">

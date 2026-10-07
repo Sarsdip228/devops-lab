@@ -61,13 +61,7 @@ export default function HeroIllustration() {
       </g>
 
       {/* ЛИНИИ СВЯЗИ (светящиеся) */}
-      <g
-        stroke="url(#lineGrad)"
-        strokeWidth="1.5"
-        fill="none"
-        opacity="0.7"
-        filter="url(#glow)"
-      >
+      <g stroke="url(#lineGrad)" strokeWidth="1.5" fill="none" opacity="0.7" filter="url(#glow)">
         <path d="M 200 200 Q 300 240 400 200" />
         <path d="M 400 200 Q 480 260 420 340" />
         <path d="M 420 340 Q 340 380 240 360" />
@@ -143,9 +137,26 @@ export default function HeroIllustration() {
       {/* ЛЕВЫЙ ВЕРХНИЙ МИНИ-СЕРВЕР */}
       <g transform="translate(180 180)">
         <ellipse cx="0" cy="28" rx="38" ry="11" fill="#38bdf8" opacity="0.15" />
-        <path d="M -35 -8 L 0 -25 L 35 -8 L 0 9 Z" fill="#1e3a5f" stroke="#38bdf8" strokeWidth="1.2" />
-        <path d="M -35 -8 L -35 20 L 0 37 L 0 9 Z" fill="#0f172a" stroke="#38bdf8" strokeWidth="1" strokeOpacity="0.5" />
-        <path d="M 35 -8 L 35 20 L 0 37 L 0 9 Z" fill="#0f172a" stroke="#a78bfa" strokeWidth="1" strokeOpacity="0.5" />
+        <path
+          d="M -35 -8 L 0 -25 L 35 -8 L 0 9 Z"
+          fill="#1e3a5f"
+          stroke="#38bdf8"
+          strokeWidth="1.2"
+        />
+        <path
+          d="M -35 -8 L -35 20 L 0 37 L 0 9 Z"
+          fill="#0f172a"
+          stroke="#38bdf8"
+          strokeWidth="1"
+          strokeOpacity="0.5"
+        />
+        <path
+          d="M 35 -8 L 35 20 L 0 37 L 0 9 Z"
+          fill="#0f172a"
+          stroke="#a78bfa"
+          strokeWidth="1"
+          strokeOpacity="0.5"
+        />
         <circle cx="-20" cy="6" r="1.5" fill="#38bdf8" filter="url(#glow)" />
         <circle cx="-20" cy="14" r="1.5" fill="#6ee7b7" filter="url(#glow)" />
       </g>
@@ -153,9 +164,26 @@ export default function HeroIllustration() {
       {/* ПРАВЫЙ ВЕРХНИЙ МИНИ-СЕРВЕР */}
       <g transform="translate(420 200)">
         <ellipse cx="0" cy="28" rx="38" ry="11" fill="#a78bfa" opacity="0.15" />
-        <path d="M -35 -8 L 0 -25 L 35 -8 L 0 9 Z" fill="#1e3a5f" stroke="#a78bfa" strokeWidth="1.2" />
-        <path d="M -35 -8 L -35 20 L 0 37 L 0 9 Z" fill="#0f172a" stroke="#38bdf8" strokeWidth="1" strokeOpacity="0.5" />
-        <path d="M 35 -8 L 35 20 L 0 37 L 0 9 Z" fill="#0f172a" stroke="#a78bfa" strokeWidth="1" strokeOpacity="0.5" />
+        <path
+          d="M -35 -8 L 0 -25 L 35 -8 L 0 9 Z"
+          fill="#1e3a5f"
+          stroke="#a78bfa"
+          strokeWidth="1.2"
+        />
+        <path
+          d="M -35 -8 L -35 20 L 0 37 L 0 9 Z"
+          fill="#0f172a"
+          stroke="#38bdf8"
+          strokeWidth="1"
+          strokeOpacity="0.5"
+        />
+        <path
+          d="M 35 -8 L 35 20 L 0 37 L 0 9 Z"
+          fill="#0f172a"
+          stroke="#a78bfa"
+          strokeWidth="1"
+          strokeOpacity="0.5"
+        />
         <circle cx="20" cy="6" r="1.5" fill="#a78bfa" filter="url(#glow)" />
         <circle cx="20" cy="14" r="1.5" fill="#6ee7b7" filter="url(#glow)" />
       </g>
@@ -163,34 +191,92 @@ export default function HeroIllustration() {
       {/* НОУТБУК (сверху справа) */}
       <g transform="translate(470 260)">
         {/* Экран */}
-        <path d="M -50 -40 L 50 -40 L 50 20 L -50 20 Z" fill="#0f172a" stroke="#38bdf8" strokeWidth="1.5" filter="url(#glow)" />
+        <path
+          d="M -50 -40 L 50 -40 L 50 20 L -50 20 Z"
+          fill="#0f172a"
+          stroke="#38bdf8"
+          strokeWidth="1.5"
+          filter="url(#glow)"
+        />
         {/* Внутренний дашборд */}
         <g fill="none" stroke="#38bdf8" strokeWidth="1" opacity="0.7">
           <rect x="-42" y="-32" width="84" height="44" rx="2" />
-          <polyline points="-38,8 -25,-10 -12,0 5,-20 18,-5 35,-15 42,-25" stroke="#6ee7b7" strokeWidth="1.5" fill="none" />
+          <polyline
+            points="-38,8 -25,-10 -12,0 5,-20 18,-5 35,-15 42,-25"
+            stroke="#6ee7b7"
+            strokeWidth="1.5"
+            fill="none"
+          />
         </g>
         <circle cx="-30" cy="-25" r="2" fill="#38bdf8" />
         <circle cx="-22" cy="-25" r="2" fill="#a78bfa" />
         <circle cx="-14" cy="-25" r="2" fill="#6ee7b7" />
         {/* Клавиатура */}
-        <path d="M -55 20 L 55 20 L 65 32 L -65 32 Z" fill="#1e293b" stroke="#334155" strokeWidth="1" />
+        <path
+          d="M -55 20 L 55 20 L 65 32 L -65 32 Z"
+          fill="#1e293b"
+          stroke="#334155"
+          strokeWidth="1"
+        />
       </g>
 
       {/* ЛЕВЫЙ НИЖНИЙ КОНТЕЙНЕР */}
       <g transform="translate(160 420)">
         <ellipse cx="0" cy="35" rx="45" ry="13" fill="#a78bfa" opacity="0.15" />
-        <path d="M -40 -5 L -40 25 L 0 45 L 0 15 Z" fill="#0f172a" stroke="#a78bfa" strokeWidth="1" strokeOpacity="0.6" />
-        <path d="M 40 -5 L 40 25 L 0 45 L 0 15 Z" fill="#0f172a" stroke="#38bdf8" strokeWidth="1" strokeOpacity="0.6" />
-        <path d="M -40 -5 L 0 -25 L 40 -5 L 0 15 Z" fill="#1e293b" stroke="#a78bfa" strokeWidth="1.2" />
-        <circle cx="0" cy="-5" r="5" fill="none" stroke="#a78bfa" strokeWidth="1.5" filter="url(#glow)" />
+        <path
+          d="M -40 -5 L -40 25 L 0 45 L 0 15 Z"
+          fill="#0f172a"
+          stroke="#a78bfa"
+          strokeWidth="1"
+          strokeOpacity="0.6"
+        />
+        <path
+          d="M 40 -5 L 40 25 L 0 45 L 0 15 Z"
+          fill="#0f172a"
+          stroke="#38bdf8"
+          strokeWidth="1"
+          strokeOpacity="0.6"
+        />
+        <path
+          d="M -40 -5 L 0 -25 L 40 -5 L 0 15 Z"
+          fill="#1e293b"
+          stroke="#a78bfa"
+          strokeWidth="1.2"
+        />
+        <circle
+          cx="0"
+          cy="-5"
+          r="5"
+          fill="none"
+          stroke="#a78bfa"
+          strokeWidth="1.5"
+          filter="url(#glow)"
+        />
       </g>
 
       {/* ПРАВЫЙ НИЖНИЙ БЛОК */}
       <g transform="translate(440 440)">
         <ellipse cx="0" cy="30" rx="40" ry="12" fill="#38bdf8" opacity="0.15" />
-        <path d="M -35 -5 L -35 22 L 0 40 L 0 13 Z" fill="#0f172a" stroke="#38bdf8" strokeWidth="1" strokeOpacity="0.6" />
-        <path d="M 35 -5 L 35 22 L 0 40 L 0 13 Z" fill="#0f172a" stroke="#a78bfa" strokeWidth="1" strokeOpacity="0.6" />
-        <path d="M -35 -5 L 0 -22 L 35 -5 L 0 13 Z" fill="#1e293b" stroke="#38bdf8" strokeWidth="1.2" />
+        <path
+          d="M -35 -5 L -35 22 L 0 40 L 0 13 Z"
+          fill="#0f172a"
+          stroke="#38bdf8"
+          strokeWidth="1"
+          strokeOpacity="0.6"
+        />
+        <path
+          d="M 35 -5 L 35 22 L 0 40 L 0 13 Z"
+          fill="#0f172a"
+          stroke="#a78bfa"
+          strokeWidth="1"
+          strokeOpacity="0.6"
+        />
+        <path
+          d="M -35 -5 L 0 -22 L 35 -5 L 0 13 Z"
+          fill="#1e293b"
+          stroke="#38bdf8"
+          strokeWidth="1.2"
+        />
         <circle cx="0" cy="-3" r="4" fill="#38bdf8" filter="url(#glow)" />
       </g>
 

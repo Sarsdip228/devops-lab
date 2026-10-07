@@ -25,7 +25,8 @@ export default function Topics() {
   const [error, setError] = useState('')
 
   useEffect(() => {
-    api.getTopics()
+    api
+      .getTopics()
       .then(setTopics)
       .catch(() => setError('Не удалось загрузить темы. Бэкенд запущен?'))
       .finally(() => setLoading(false))
@@ -71,9 +72,7 @@ export default function Topics() {
             </div>
             <h3>{topic.title}</h3>
             <p>{topic.description}</p>
-            <span className={`badge ${topic.difficulty}`}>
-              {topic.difficulty}
-            </span>
+            <span className={`badge ${topic.difficulty}`}>{topic.difficulty}</span>
           </Link>
         ))}
       </div>

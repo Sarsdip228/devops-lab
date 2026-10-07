@@ -13,7 +13,8 @@ export default function Commands() {
     setError('')
 
     const timer = setTimeout(() => {
-      api.getCommands(search || undefined)
+      api
+        .getCommands(search || undefined)
         .then(setCommands)
         .catch(() => setError('Не удалось загрузить команды.'))
         .finally(() => setLoading(false))
@@ -41,16 +42,15 @@ export default function Commands() {
         <div className="loading">Ничего не найдено.</div>
       )}
 
-      {!loading && commands.map(cmd => (
-        <div key={cmd.id} className="command">
-          <div className="command-name">{cmd.name}</div>
-          <div className="command-syntax">{cmd.syntax}</div>
-          <p style={{ color: '#cbd5e1' }}>{cmd.description}</p>
-          {cmd.example && (
-            <div className="command-example">$ {cmd.example}</div>
-          )}
-        </div>
-      ))}
+      {!loading &&
+        commands.map(cmd => (
+          <div key={cmd.id} className="command">
+            <div className="command-name">{cmd.name}</div>
+            <div className="command-syntax">{cmd.syntax}</div>
+            <p style={{ color: '#cbd5e1' }}>{cmd.description}</p>
+            {cmd.example && <div className="command-example">$ {cmd.example}</div>}
+          </div>
+        ))}
     </>
   )
 }
