@@ -160,7 +160,182 @@ const topicsData: Record<number, TopicData> = {
   10: { title: 'Мониторинг',   plan: [], theory: '', commands: [] },
   11: { title: 'Cloud',        plan: [], theory: '', commands: [] },
   12: { title: 'Безопасность', plan: [], theory: '', commands: [] },
-  13:  { title: 'network',     plan: [], theory: '', commands: [] },
+  13: {   // ← ПОМЕНЯЙ на фактический id из URL
+    title: 'Сеть',
+    plan: [
+      'Что такое сеть и зачем она нужна',
+      'Модель OSI — 7 уровней (обзор)',
+      'TCP/IP — 4 уровня (практика)',
+      'IP-адреса и маски подсетей',
+      'DNS — как домены превращаются в IP',
+      'Порты и протоколы (TCP vs UDP)',
+      'Как ходит пакет — пошагово',
+      'Диагностика: ping, traceroute, mtr',
+      'HTTP-запросы: curl, wget',
+      'SSH и удалённое управление',
+      'Firewall: iptables, ufw',
+      'Анализ трафика: tcpdump, ss',
+    ],
+    theory: `Сеть — это способ передать данные от одного устройства к другому.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📚 МОДЕЛЬ OSI — 7 уровней
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+7. Application  — HTTP, DNS, SSH (что видит пользователь)
+6. Presentation — шифрование, сжатие (TLS)
+5. Session      — сессии между приложениями
+4. Transport    — TCP, UDP (порты, надёжность)
+3. Network      — IP, маршрутизация (адреса)
+2. Data Link    — Ethernet, MAC-адреса (локальная сеть)
+1. Physical     — кабели, Wi-Fi (биты)
+
+На практике используют TCP/IP — 4 уровня:
+• Application    (HTTP, DNS, SSH)
+• Transport      (TCP, UDP)
+• Internet       (IP)
+• Network Access (Ethernet, Wi-Fi)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+📦 ЧТО ТАКОЕ ПАКЕТ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Данные разбиваются на пакеты. Каждый содержит:
+• Заголовок (header) — откуда, куда, какой протокол
+• Данные (payload) — кусок информации
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🚀 КАК ХОДИТ ПАКЕТ (пример: открываешь сайт)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+1. Вводишь google.com в браузере
+
+2. DNS-запрос: браузер спрашивает DNS-сервер
+   "Какой IP у google.com?"
+   DNS отвечает: 142.250.185.78
+
+3. TCP-соединение (3-way handshake):
+   Ты → SYN → Google
+   Ты ← SYN-ACK ← Google
+   Ты → ACK → Google
+   Соединение установлено.
+
+4. HTTP-запрос:
+   GET / HTTP/1.1
+   Host: google.com
+
+5. Пакет идёт по сети:
+   • Компьютер → роутер (по MAC)
+   • Роутер → провайдер (по IP)
+   • Провайдер → маршрутизаторы
+   • ... → сервер Google
+
+6. Google отвечает:
+   HTTP/1.1 200 OK
+   <html>...</html>
+
+7. Браузер рендерит страницу.
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔑 КЛЮЧЕВЫЕ ПОНЯТИЯ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+IP-адрес  — уникальный адрес устройства (192.168.1.1)
+Маска     — где network, где host (255.255.255.0)
+Порт      — «дверь» сервиса (80 HTTP, 443 HTTPS, 22 SSH)
+DNS       — домен → IP (телефонная книга интернета)
+TCP       — надёжный протокол (проверяет доставку)
+UDP       — быстрый, без проверки (видео, игры)
+MAC-адрес — физический адрес сетевой карты
+Router    — устройство, соединяющее сети
+Firewall  — фильтр трафика (что пропускать)
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🎯 ЗАЧЕМ ЭТО В DEVOPS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+• Диагностика: "почему сервис не отвечает?" → ping, curl, ss
+• Firewall: "какие порты открыть?" → ufw, iptables
+• Балансировка: "как распределить трафик?" → Nginx
+• Мониторинг: "доступен ли сервер?" → ping, mtr
+• Отладка API: "что вернул сервер?" → curl -v`,
+    commands: [
+      // ─── 🌐 Базовое ───
+      { group: '🌐 Базовое', name: 'ping',        syntax: 'ping <хост>',        description: 'Проверить доступность узла', example: 'ping 8.8.8.8' },
+      { group: '🌐 Базовое', name: 'ping -c 4',   syntax: 'ping -c 4 <хост>',   description: '4 пакета и стоп',            example: 'ping -c 4 google.com' },
+      { group: '🌐 Базовое', name: 'ip a',        syntax: 'ip a',               description: 'IP-адреса интерфейсов',      example: 'ip a' },
+      { group: '🌐 Базовое', name: 'ip link',     syntax: 'ip link show',       description: 'Сетевые интерфейсы (L2)',    example: 'ip link show' },
+      { group: '🌐 Базовое', name: 'hostname -I', syntax: 'hostname -I',        description: 'IP-адреса машины',           example: 'hostname -I' },
+
+      // ─── 🌐 DNS ───
+      { group: '🌐 DNS', name: 'nslookup',              syntax: 'nslookup <домен>',        description: 'DNS-запрос',              example: 'nslookup google.com' },
+      { group: '🌐 DNS', name: 'dig',                   syntax: 'dig <домен>',             description: 'DNS-запрос (подробно)',   example: 'dig google.com' },
+      { group: '🌐 DNS', name: 'dig +short',            syntax: 'dig +short <домен>',      description: 'Только IP',               example: 'dig +short google.com' },
+      { group: '🌐 DNS', name: 'dig MX',                syntax: 'dig MX <домен>',          description: 'MX-записи (почта)',       example: 'dig MX google.com' },
+      { group: '🌐 DNS', name: 'host',                  syntax: 'host <домен>',            description: 'DNS-запрос (кратко)',     example: 'host google.com' },
+      { group: '🌐 DNS', name: 'cat /etc/resolv.conf',  syntax: 'cat /etc/resolv.conf',    description: 'DNS-серверы системы',     example: 'cat /etc/resolv.conf' },
+
+      // ─── 🌐 Порты и диагностика ───
+      { group: '🌐 Порты и диагностика', name: 'ss -tulnp', syntax: 'ss -tulnp',              description: 'Открытые порты',            example: 'ss -tulnp' },
+      { group: '🌐 Порты и диагностика', name: 'ss -tuln',  syntax: 'ss -tuln',               description: 'Без процессов',             example: 'ss -tuln' },
+      { group: '🌐 Порты и диагностика', name: 'ss -tan',   syntax: 'ss -tan',                description: 'Все TCP-соединения',        example: 'ss -tan' },
+      { group: '🌐 Порты и диагностика', name: 'nc -zv',    syntax: 'nc -zv <хост> <порт>',   description: 'Проверить порт (netcat)',   example: 'nc -zv google.com 443' },
+      { group: '🌐 Порты и диагностика', name: 'nc -l',     syntax: 'nc -l <порт>',           description: 'Слушать порт',              example: 'nc -l 8080' },
+      { group: '🌐 Порты и диагностика', name: 'traceroute',syntax: 'traceroute <хост>',      description: 'Путь пакетов',              example: 'traceroute google.com' },
+      { group: '🌐 Порты и диагностика', name: 'mtr',       syntax: 'mtr <хост>',             description: 'traceroute + ping live',    example: 'mtr google.com' },
+
+      // ─── 🌐 HTTP и API ───
+      { group: '🌐 HTTP и API', name: 'curl',         syntax: 'curl <URL>',                     description: 'HTTP-запрос',         example: 'curl https://api.example.com' },
+      { group: '🌐 HTTP и API', name: 'curl -I',      syntax: 'curl -I <URL>',                  description: 'Только заголовки',    example: 'curl -I https://google.com' },
+      { group: '🌐 HTTP и API', name: 'curl -v',      syntax: 'curl -v <URL>',                  description: 'Подробно (отладка)',  example: 'curl -v https://google.com' },
+      { group: '🌐 HTTP и API', name: 'curl -X POST', syntax: 'curl -X POST -d <данные> <URL>', description: 'POST-запрос',         example: 'curl -X POST -d \'{"k":"v"}\' https://api.example.com' },
+      { group: '🌐 HTTP и API', name: 'curl -H',      syntax: 'curl -H "<Header>" <URL>',       description: 'С заголовком',        example: 'curl -H "Authorization: Bearer xxx" https://api.example.com' },
+      { group: '🌐 HTTP и API', name: 'curl -o',      syntax: 'curl -o <файл> <URL>',           description: 'Сохранить в файл',    example: 'curl -o file.zip https://example.com/file.zip' },
+      { group: '🌐 HTTP и API', name: 'wget',         syntax: 'wget <URL>',                     description: 'Скачать файл',        example: 'wget https://example.com/file.zip' },
+
+      // ─── 🌐 SSH и файлы ───
+      { group: '🌐 SSH и файлы', name: 'ssh',        syntax: 'ssh <user>@<хост>',              description: 'Подключиться по SSH',   example: 'ssh user@192.168.1.10' },
+      { group: '🌐 SSH и файлы', name: 'ssh -p',     syntax: 'ssh -p <порт> <user>@<хост>',    description: 'SSH на другом порту',   example: 'ssh -p 2222 user@host' },
+      { group: '🌐 SSH и файлы', name: 'ssh -i',     syntax: 'ssh -i <ключ> <user>@<хост>',    description: 'С указанием ключа',     example: 'ssh -i ~/.ssh/key user@host' },
+      { group: '🌐 SSH и файлы', name: 'scp',        syntax: 'scp <файл> <user>@<хост>:<путь>', description: 'Копировать по SSH',    example: 'scp file.txt user@host:/tmp/' },
+      { group: '🌐 SSH и файлы', name: 'scp -r',     syntax: 'scp -r <папка> <user>@<хост>:<путь>', description: 'Копировать папку',  example: 'scp -r folder/ user@host:/tmp/' },
+      { group: '🌐 SSH и файлы', name: 'ssh-keygen', syntax: 'ssh-keygen -t ed25519',          description: 'Создать SSH-ключ',      example: 'ssh-keygen -t ed25519' },
+
+      // ─── 🌐 Firewall ───
+      { group: '🌐 Firewall', name: 'iptables -L', syntax: 'sudo iptables -L',      description: 'Правила firewall',   example: 'sudo iptables -L' },
+      { group: '🌐 Firewall', name: 'iptables -A', syntax: 'sudo iptables -A INPUT -p tcp --dport <порт> -j ACCEPT', description: 'Добавить правило', example: 'sudo iptables -A INPUT -p tcp --dport 22 -j ACCEPT' },
+      { group: '🌐 Firewall', name: 'ufw status',  syntax: 'sudo ufw status',       description: 'Статус UFW',         example: 'sudo ufw status' },
+      { group: '🌐 Firewall', name: 'ufw allow',   syntax: 'sudo ufw allow <порт>', description: 'Открыть порт',       example: 'sudo ufw allow 22' },
+      { group: '🌐 Firewall', name: 'ufw deny',    syntax: 'sudo ufw deny <порт>',  description: 'Закрыть порт',       example: 'sudo ufw deny 3306' },
+      { group: '🌐 Firewall', name: 'ufw enable',  syntax: 'sudo ufw enable',       description: 'Включить UFW',       example: 'sudo ufw enable' },
+
+      // ─── 🌐 Анализ трафика ───
+      { group: '🌐 Анализ трафика', name: 'tcpdump',      syntax: 'sudo tcpdump -i <интерфейс>', description: 'Захват пакетов',    example: 'sudo tcpdump -i eth0' },
+      { group: '🌐 Анализ трафика', name: 'tcpdump port', syntax: 'sudo tcpdump port <порт>',    description: 'Захват по порту',   example: 'sudo tcpdump port 80' },
+      { group: '🌐 Анализ трафика', name: 'tcpdump -w',   syntax: 'sudo tcpdump -w <файл>',      description: 'Записать в файл',   example: 'sudo tcpdump -w capture.pcap' },
+      { group: '🌐 Анализ трафика', name: 'arp -a',       syntax: 'arp -a',                      description: 'ARP-таблица',       example: 'arp -a' },
+      { group: '🌐 Анализ трафика', name: 'nmap',         syntax: 'nmap -p <порты> <хост>',      description: 'Сканирование портов', example: 'nmap -p 1-1000 192.168.1.1' },
+
+      // ─── 🌐 Маршрутизация ───
+      { group: '🌐 Маршрутизация', name: 'ip route',      syntax: 'ip route',                       description: 'Таблица маршрутов',    example: 'ip route' },
+      { group: '🌐 Маршрутизация', name: 'ip route add',  syntax: 'sudo ip route add <сеть> via <шлюз>', description: 'Добавить маршрут', example: 'sudo ip route add 10.0.0.0/24 via 192.168.1.1' },
+      { group: '🌐 Маршрутизация', name: 'ip route del',  syntax: 'sudo ip route del <сеть>',       description: 'Удалить маршрут',      example: 'sudo ip route del 10.0.0.0/24' },
+      { group: '🌐 Маршрутизация', name: 'traceroute -n', syntax: 'traceroute -n <хост>',           description: 'Без DNS-имён',         example: 'traceroute -n google.com' },
+
+      // ─── 🌐 Конфигурация ───
+      { group: '🌐 Конфигурация', name: 'ip addr add',      syntax: 'sudo ip addr add <IP>/<маска> dev <интерфейс>', description: 'Добавить IP',         example: 'sudo ip addr add 192.168.1.100/24 dev eth0' },
+      { group: '🌐 Конфигурация', name: 'ip addr del',      syntax: 'sudo ip addr del <IP>/<маска> dev <интерфейс>', description: 'Удалить IP',          example: 'sudo ip addr del 192.168.1.100/24 dev eth0' },
+      { group: '🌐 Конфигурация', name: 'ip link set up',   syntax: 'sudo ip link set <интерфейс> up',   description: 'Включить интерфейс',    example: 'sudo ip link set eth0 up' },
+      { group: '🌐 Конфигурация', name: 'ip link set down', syntax: 'sudo ip link set <интерфейс> down', description: 'Выключить интерфейс',   example: 'sudo ip link set eth0 down' },
+      { group: '🌐 Конфигурация', name: 'hostnamectl',      syntax: 'hostnamectl',                       description: 'Инфо о хосте',          example: 'hostnamectl' },
+
+      // ─── 🌐 Мониторинг сети ───
+      { group: '🌐 Мониторинг сети', name: 'watch -n 1 ss -s', syntax: 'watch -n 1 ss -s',   description: 'Мониторинг соединений',       example: 'watch -n 1 ss -s' },
+      { group: '🌐 Мониторинг сети', name: 'ip -s link',       syntax: 'ip -s link',         description: 'Статистика интерфейсов',      example: 'ip -s link' },
+      { group: '🌐 Мониторинг сети', name: 'ss -s',            syntax: 'ss -s',              description: 'Сводка по сокетам',           example: 'ss -s' },
+      { group: '🌐 Мониторинг сети', name: 'nload',            syntax: 'nload',              description: 'Загрузка сети в реальном времени', example: 'nload' },
+    ],
+  },
 }
 
 
