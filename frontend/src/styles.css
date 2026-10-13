@@ -511,3 +511,38 @@ body {
     width: 100%;
   }
 }
+
+/* ═══════════════════════════════════════════ */
+/*  HEADER — пользователь и кнопка выхода      */
+/* ═══════════════════════════════════════════ */
+.nav-user {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: 0.5rem;
+  padding-left: 1rem;
+  border-left: 1px solid #30363d;
+}
+
+.nav-user-name {
+  color: #58a6ff;
+  font-weight: 500;
+}
+
+.logout-btn {
+  background: transparent;
+  border: 1px solid #30363d;
+  color: #8b949e;
+  padding: 0.35rem 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-family: inherit;
+  transition: all 0.15s ease;
+}
+
+.logout-btn:hover {
+  background: #21262d;
+  color: #f85149;
+  border-color: #f85149;
+}

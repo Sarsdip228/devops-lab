@@ -27,3 +27,21 @@ export interface TopicDetail extends Topic {
   lessons: Lesson[]
   commands: Command[]
 }
+
+
+
+// ═══════════════════════════════════════════
+//  AUTH
+// ═══════════════════════════════════════════
+export interface User {
+  id: number
+  username: string
+  is_admin: boolean
+  created_at: string
+}
+
+export interface AuthResponse {
+  access_token: string
+  token_type: string
+  user: User
+}
