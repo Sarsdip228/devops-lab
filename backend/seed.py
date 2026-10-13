@@ -95,6 +95,7 @@ def seed_data(db):
             kubernetes,
             security,
             bash,
+            network,
         ]
     )
     db.commit()
