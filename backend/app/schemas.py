@@ -59,3 +59,33 @@ class Topic(TopicBase):
 class TopicDetail(Topic):
     lessons: list[Lesson] = []
     commands: list[Command] = []
+
+
+
+
+# ═══════════════════════════════════════════
+#  AUTH
+# ═══════════════════════════════════════════
+from datetime import datetime
+from pydantic import BaseModel, Field
+
+
+class UserRegister(BaseModel):
+    username: str = Field(min_length=3, max_length=50, pattern=r"^[a-zA-Z0-9_-]+$")
+    password: str = Field(min_length=6, max_length=100)
+
+
+class UserPublic(BaseModel):
+    id: int
+    username: str
+    is_admin: bool
+    created_at: datetime
+
+    class Config:
+        from_attributes = True
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str = "bearer"
+    user: UserPublic

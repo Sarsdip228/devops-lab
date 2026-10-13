@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app import models
-from app.api import commands, lessons, topics
+from app.api import topics, lessons, commands, auth as auth_router
 from app.database import Base, SessionLocal, engine
 
 Base.metadata.create_all(bind=engine)
@@ -44,6 +44,7 @@ app.add_middleware(
 app.include_router(topics.router)
 app.include_router(lessons.router)
 app.include_router(commands.router)
+app.include_router(auth_router.router)
 
 
 @app.get("/")

@@ -1,8 +1,7 @@
-from sqlalchemy import Column, ForeignKey, Integer, String, Text
+from sqlalchemy import Column, Integer, String, Text, ForeignKey, Boolean, DateTime
 from sqlalchemy.orm import relationship
-
+from sqlalchemy.sql import func
 from app.database import Base
-
 
 class Topic(Base):
     __tablename__ = "topics"
@@ -40,3 +39,20 @@ class Command(Base):
     example = Column(Text, default="")
 
     topic = relationship("Topic", back_populates="commands")
+
+
+
+# ═══════════════════════════════════════════
+#  ПОЛЬЗОВАТЕЛИ
+# ═══════════════════════════════════════════
+class User(Base):
+    __tablename__ = "users"
+
+    id = Column(Integer, primary_key=True, index=True)
+    username = Column(String(50), unique=True, index=True, nullable=False)
+    hashed_password = Column(String(255), nullable=False)
+
+    is_active = Column(Boolean, default=True)
+    is_admin = Column(Boolean, default=False)
+
+    created_at = Column(DateTime(timezone=True), server_default=func.now())
