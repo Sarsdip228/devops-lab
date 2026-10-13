@@ -74,6 +74,12 @@ def seed_data(db):
         icon="📜",
         difficulty="beginner",
     )
+    network = models.Topic(
+    title="Сеть",
+    description="Основы сетей: IP, DNS, порты, firewall, диагностика.",
+    icon="🌐",
+    difficulty="intermediate",
+    )
 
     db.add_all(
         [
