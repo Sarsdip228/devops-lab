@@ -160,6 +160,7 @@ const topicsData: Record<number, TopicData> = {
   10: { title: 'Мониторинг',   plan: [], theory: '', commands: [] },
   11: { title: 'Cloud',        plan: [], theory: '', commands: [] },
   12: { title: 'Безопасность', plan: [], theory: '', commands: [] },
+  13:  { title: 'network',     plan: [], theory: '', commands: [] },
 }
 
 
