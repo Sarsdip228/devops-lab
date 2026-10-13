@@ -1,8 +1,9 @@
 from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
 from sqlalchemy.orm import Session
+
+from app import auth, models, schemas
 from app.database import get_db
-from app import models, schemas, auth
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 

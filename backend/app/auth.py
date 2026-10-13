@@ -1,12 +1,14 @@
 import os
 from datetime import datetime, timedelta
-from jose import JWTError, jwt
-from passlib.context import CryptContext
+
 from fastapi import Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer
+from jose import JWTError, jwt
+from passlib.context import CryptContext
 from sqlalchemy.orm import Session
-from app.database import get_db
+
 from app import models
+from app.database import get_db
 
 SECRET_KEY = os.getenv("JWT_SECRET_KEY", "dev-only-change-me")
 ALGORITHM = "HS256"
@@ -44,7 +46,7 @@ def get_current_user(
         if user_id is None:
             raise err
     except JWTError:
-        raise err
+        raise err from None
 
     user = db.query(models.User).filter(models.User.id == int(user_id)).first()
     if not user or not user.is_active:

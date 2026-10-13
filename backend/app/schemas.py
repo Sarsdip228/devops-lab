@@ -1,4 +1,6 @@
-from pydantic import BaseModel
+from datetime import datetime
+
+from pydantic import BaseModel, Field
 
 
 class LessonBase(BaseModel):
@@ -63,11 +65,6 @@ class TopicDetail(Topic):
 
 
 
-# ═══════════════════════════════════════════
-#  AUTH
-# ═══════════════════════════════════════════
-from datetime import datetime
-from pydantic import BaseModel, Field
 
 
 class UserRegister(BaseModel):

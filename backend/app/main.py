@@ -2,7 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app import models
-from app.api import topics, lessons, commands, auth as auth_router
+from app.api import auth as auth_router
+from app.api import commands, lessons, topics
 from app.database import Base, SessionLocal, engine
 
 Base.metadata.create_all(bind=engine)
