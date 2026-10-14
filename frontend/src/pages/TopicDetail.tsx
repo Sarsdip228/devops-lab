@@ -49,7 +49,7 @@ const topicsData: Record<number, TopicData> = {
 • Ядро (kernel) — управляет железом
 • Оболочка (shell) — интерфейс для команд
 • Файловая система — иерархия от корня /
-• Права доступа — rwx для owner/group/other`,
+• Права доступа — rwx для owner/group/other test`,
     commands: [
       // ─── 🖥️ Навигация ───
       { group: '🖥️ Навигация', name: 'pwd',     syntax: 'pwd',                description: 'Показать текущую директорию', example: 'pwd' },
